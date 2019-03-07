@@ -16,7 +16,7 @@ tensorflow 1.8.0-gpu
 ### 模型架构
 ![模型结构](/src/model.png) 
 **这里放一个tensorboard的图，这是在训练第三个标签时候各项指标的变化。**  
-![tensorboard](/src/tensorboard的图.png)
+![tensorboard](/src/tensorboard.png)
 ### 超参数的选择  
 * 学习率: 3e-4  
 学习率尝试过1e-4、3e-4、1e-3等，发现取3e-4时F1值和1e-3差不多，但是取3e-4时模型的最终loss更低。
