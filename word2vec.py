@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+# 词向量模型的训练
 from gensim.models import word2vec
 import datetime
 
@@ -28,8 +29,7 @@ class wordItor():
 # 读取train中content部分，经过预处理以及分词后，返回一个word的迭代器
 sen = wordItor("content.txt")
 # 传入迭代器，开始训练
-# 4分钟，6遍
-size = [300, 380, 400]
+size = [250, 300, 380, 400]
 for i in size:
     print('start:', i)
     model = word2vec.Word2Vec(sentences=sen, size=i, window=5)
@@ -37,8 +37,3 @@ for i in size:
     model.wv.save_word2vec_format('./model/model_s_' + str(i) + '_w_5.bin', binary=True)
     print('end:', i)
     print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-
-'''
-model.most_similar('不推荐', topn=10)
-
-'''

@@ -11,7 +11,7 @@ class Load_batch:
     如果有bug，考虑是否是while True的问题
 
     example:
-        >> load_batch = Load_batch()
+        >> load_batch = Load_batch(method='train', label=0)
         >> seg_itor = load_batch.seg_itor
         >> label_itor = load_batch.label_itor
         >> segMatrix, segLen = next(seg_itor)
@@ -23,7 +23,7 @@ class Load_batch:
     def __init__(self, method='train', label=-1, batchSize=32,
                  maxSeqLength=350, numDimensions=300):
         # 确保传入有效的label
-        if -1 < int(label):
+        if -1 == int(label):
             raise KeyError('请输入合法label.')
         linecache.clearcache()  # 清除缓存，防止读取脏数据
         self.numDimensions = numDimensions
@@ -80,7 +80,7 @@ class Load_batch:
                 if segMatrix is None:
                     segMatrix = line
                 else:
-                    segResult = np.append(segMatrix, line, axis=0)
+                    segMatrix = np.append(segMatrix, line, axis=0)
             # segResult [batchSize, maxSeqLength, depth]
             # segLen (32,)
             yield segMatrix, np.asarray(segLen)
